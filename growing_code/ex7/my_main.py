@@ -60,7 +60,7 @@ def test(function):
 
 
 def main():
-    function = input("Nombre de función a testar excluyendo .py: ")
+    function = input("Nombre de función a testar EXcluyendo .py: ")
     test(function)
 
 
