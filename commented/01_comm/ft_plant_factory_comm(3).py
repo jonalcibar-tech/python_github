@@ -15,12 +15,14 @@ class Plant:
 
 
 def main() -> None:
-    plant1 = Plant("Rose", 25.0, 30)
-    plant2 = Plant("Oak", 200.0, 365)
-    plant3 = Plant("Cactus", 5.0, 90)
-    plant4 = Plant("Sunflower", 80.0, 45)
-    plant5 = Plant("Fern", 15.0, 120)
-    plants = [plant1, plant2, plant3, plant4, plant5]
+    # otra forma sería creando la lista directamente:
+    plants = [
+    Plant("Rose", 25.0, 30),
+    Plant("Oak", 200.0, 365),
+    Plant("Cactus", 5.0, 90),
+    Plant("Sunflower", 80.0, 45),
+    Plant("Fern", 15.0, 120)
+    ]
     print("=== Plant Factory Output ===")
     for i in plants:
         print("Created: ", end="")
