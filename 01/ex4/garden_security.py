@@ -4,13 +4,13 @@ class Plant:
         self.height = height
         self.age = age
 
-    def grow(self, growth: float = 0.0) -> None:
-        if growth <0:
+    def set_height(self, tall: float = 0.0) -> None:
+        if tall < 0:
             print("grow value must be positive")
             return()
-        self.height += growth
+        self.height = tall
 
-    def get_older(self, time: int = 0) -> None:
+    def set_age(self, time: int = 0) -> None:
         if time < 0:
             print("time value must be positive")
             return()
@@ -18,6 +18,7 @@ class Plant:
 
     def show(self) -> None:
         print(f"{self.name}: {round(self.height, 1)}cm, {self.age} days old")
+
 
 
 def main() -> None:
@@ -31,6 +32,8 @@ def main() -> None:
     for i in plants:
         print("Created: ", end="")
         Plant.show(i)
+    Plant.set_height("Oak", 3.0)
+    Plant.set_age("Cactus", -2)
 
 
 if __name__ == "__main__":
