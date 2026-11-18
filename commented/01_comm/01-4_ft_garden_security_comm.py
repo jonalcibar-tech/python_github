@@ -1,57 +1,60 @@
+
+"""
+Hasta ahora creaba los objetos son comprobarlos, ahora recurre
+a set_height y set_age comprobando previamente su valor postitivo
+El subject pide la creación de get_age() y get height() pero yo
+no los necesito ya que el __init__ llama e set(height o age) devolviendo
+mensajes si son negativos (y ponerlos a 0 ya que en el subject 
+permite no variarlos o dejar a default) tanto y al crearlos como
+al alterarlos (set) y logro sacarlo en 45 lineas claras en vez de 63.
+"""
 class Plant:
     """
-    # Hasta ahor creaba los objetos son comprobarlos, ahora recurre
-    # a set_height y set_age comprobando previamente su valor postitivo
-    # El subject pide la creacióm de get_age() y get height() pero yo
-    # no los necesito ya que el __init:: llama e set_... devolviemdo
-    errores y mensajes si son negativostanto al crearlos como alterarlos
-    y logro sacarlo en 45 lineas claras en vez de 63.
+    los atributos de Plant los antecedo de _ (p.ej. _name _age)
+    es una convención que alerta que ese atributo de los objetos
+    no debe alterarse sin más sino a traves de de métodos, asi
+    _age = -5 no se "debería hacer" se debe alterar a traves de set_age(age)
     """
-    def __init__(self, name: str, height: float = 0, age : int = 0) -> None:
-        self.name :str = (name)
-        print(f"\nPlant created: {self.name}")
-        self.height :float = self.set_height(height)
-        self.age :int = self.set_age(age)
-    
+    def __init__(self, name: str, height: float = 0, age: int = 0) -> None:
+        self._name: str = (name)
+        print(f"\nPlant created: {self._name}")
+        self._height: float = self.set_height(height)
+        self._age: int = self.set_age(age)
+
     def set_height(self, height: float = 0.0) -> float:
-        if height < 0:
-            print(f"Error, height can't be negative")
-            height = 0
-        print(f"Height updated: {height}cm")
-        return(height)
-    
+        if height >= 0:
+            print(f"{self._name} height updated: {height}cm")
+            return (height)
+        print("Error, height can't be negative. Set to 0.0")
+        return (0.0)
+
     def set_age(self, age: int) -> int:
-        if age < 0:
-            print("Error, age can't be negative")
-            age = 0
-        print(f"Age updated: {age} days")
-        return(age)
+        if age >= 0:
+            print(f"{self._name} age updated: {age} days")
+            return (age)
+        print("Error, age can't be negative. Set to 0")
+        return (0)
 
-    def get_height(self):
-        print(f"{self.name} height: {round(self.height,1)}cm")
+    def get_height(self) -> None:
+        print(f"{self._name} height: {round(self._height, 1)}cm")
 
-    def get_age(self):
-            print(f"{self.name} age: {self.age} days old")
-    
+    def get_age(self) -> None:
+        print(f"{self._name} age: {self._age} days old")
+
     def show(self) -> None:
-        print(f"{self.name}: {round(self.height, 1)}cm, {self.age} days old")
-        
+        print(f"{self._name}: {round(self._height, 1)}cm, end=""")
+        print(f"{self._age} days old")
 
-def main() -> None:          
+
+def main() -> None:
     print("=== Garden Security System ===")
     plant1 = Plant("Rose", 25.0, 30)
     plant2 = Plant("Oak", 200.0, 365)
     plant3 = Plant("Cactus", -2, 90)
     plant4 = Plant("Sunflower", 80.0, -45)
-    plant5 = Plant("Fern", 15.0, 120) 
+    plant5 = Plant("Fern", 15.0, 120)
     plants = [plant1, plant2, plant3, plant4, plant5]
     print(f"\nTotal plants: {len(plants)}")
-    """
-        for i in plants:
-            Plant.get_age(i)
-            Plant.get_height(i)
-            Plant.show(i)
-    """
 
 
 if __name__ == "__main__":
