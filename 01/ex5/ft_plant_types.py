@@ -2,12 +2,12 @@ class Plant:
 
     def __init__(self, name: str, height: float = 0, age: int = 0) -> None:
         self._name: str = (name)
-        print(f"\nPlant created: {self._name}")
-        self._height: float = self.set_height(height)
-        self._age: int = self.set_age(age)
+        print(f"{self._name}")
+        self._height: float = height
+        self._age: int = age
 
     def set_height(self, height: float = 0.0) -> float:
-        if height >= 0:
+        if height < 0:
             print(f"{self._name} height updated: {height}cm")
             return (height)
         print("Error, height can't be negative. Set to 0.0")
@@ -27,38 +27,84 @@ class Plant:
         print(f"{self._name} age: {self._age} days old")
 
     def show(self) -> None:
-        print(f"{self._name}: {round(self._height, 1)}cm, ", end="")
-        print(f"{self._age} days old")
+        print(f"{self._name}: {round(self._height, 1)}cm, "
+              f"{self._age} days old")
 
 
-class Type(Plant):
-    def __init__(self, name: str, height: float = 0, age: int = 0
-                 plant_type: str) -> None:
-    super.__init__(name, height, age)
-    self._plant_type: str = type
-
-
-class Flower(Type):
-    def _init_(self, name, color, bloom = False) -> None:
-        super.__init__(name)
+class Flower(Plant):
+    def __init__(self, name: str, height: float = 0, age: int = 0,
+                 color: str = "", bloom: bool = False) -> None:
+        super().__init__(name, height, age)
         self._color: str = color
         self._bloom: bool = bloom
 
+    def bloom(self):
+        self._bloom = True
+        Plant.show(self)
 
-class Tree(Type):
-    def _init_(self, name, shade) -> None:
-        super.__init__(name)
-        self.shade: float= ()
+    def show(self) -> None:
+        Plant.show(self)
+        print("Color : {self._color}")
+        if self._bloom:
+             print(f"{self._name} is blooming beautifully!")
+        else:
+            print(f"{self._name} has not bloomed yet")
+
+
+class Tree(Plant):
+    def __init__(self, name: str, height: float = 0, age: int = 0,
+                 trunk_diam: float = 0) -> None:
+        super().__init__(name, height, age)
+        self._trunk_diam = trunk_diam
+
+    def shade(self) -> None:
+        if self._trunk_diamm & self._height:
+            print(f"Tree {self._name} now produces a shade of "
+                  f"{round(self._height, 1)}cm long and "
+                  f"{round(self._trunk_diamm, 1)}cm wide.")
+
+    def show(self) -> None:
+        Plant.show(self)
+        print(f"Trunk diameter: {round(self._trunk_diam, 1)}")
+
+class Vegetable(Plant):
+    def __init__(self, name: str, height: float = 0, age: int = 0,
+                 harv_season: str = "", nutr_val: float = 0, 
+                 growth_rate: float = 0,
+                 nutr_day_rate: float = 0)-> None:
+        super().__init__(name, height, age)
+        self._harv_season = harv_season
+        self._nutr_val = nutr_val
+        self._growth_rate = growth_rate
+        self._nutr_day_rate = nutr_day_rate
+    
+    def age(self, days) -> None:
+        Plant.set_age(self, self.__age + days)
+        Plant.set_height(self. self._height + days + growth_rate)
+        self._nutr_val = days * self._nutr_day_rate     
+
+    def show(self) -> None:
+        Plant.show (self)
+        print(f"Harvest season: {self._harv_season}")
+        print(f"Nutritional value: {self._nutr_val}")
 
 
 def main() -> None:
-    print("=== Garden Security System ===")
-    plant1 = Plant("Rose", 25.0, 30)
-    plant2 = Plant("Oak", 200.0, 365)
+    plant1 = Flower("Rose", 15.0, 10, "red", False)
+    plant2 = Tree("Oak", 200.0, 365, 5.0)
     plant3 = Plant("Cactus", -2, 90)
-    plant4 = Plant("Sunflower", 80.0, -45)
+    plant4 = Flower("Sunflower", 80.0, -45, "variable", True)
     plant5 = Plant("Fern", 15.0, 120)
-    plants = [plant1, plant2, plant3, plant4, plant5]
+    plant6 = Vegetable("Tomato", 5.0, 10, 0, "April", 2.1, 1)
+    plants = [plant1, plant2, plant3, plant4, plant5, plant6]
+    print("=== Garden Plant Types ===")
+    for i in plants:
+        Plant.show(i)
+    Vegetable.age(plant6, 2)
+    Vegetable.show(plant6)
+
+if __name__ == "__main__":
+    main()
 
 """""
 The garden now needs to handle different types of plants: flowers, trees, and vegetables.
