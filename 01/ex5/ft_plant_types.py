@@ -8,8 +8,9 @@ class Plant:
 
     def set_height(self, height: float = 0.0) -> float:
         if height < 0:
+            self._height = self.height
             print(f"{self._name} height updated: {height}cm")
-            return (height)
+            return (self._height)
         print("Error, height can't be negative. Set to 0.0")
         return (0.0)
 
@@ -70,19 +71,22 @@ class Tree(Plant):
 class Vegetable(Plant):
     def __init__(self, name: str, height: float = 0, age: int = 0,
                  harv_season: str = "", nutr_val: float = 0, 
-                 growth_rate: float = 0,
+                 nutr_growth_rate: float = 0,
                  nutr_day_rate: float = 0)-> None:
         super().__init__(name, height, age)
         self._harv_season = harv_season
         self._nutr_val = nutr_val
-        self._growth_rate = growth_rate
+        self._nutr_growth_rate = nutr_growth_rate
         self._nutr_day_rate = nutr_day_rate
     
     def age(self, days) -> None:
-        Plant.set_age(self, self.__age + days)
-        Plant.set_height(self. self._height + days + growth_rate)
-        self._nutr_val = days * self._nutr_day_rate     
-
+        Plant.set_age(self, self._age + days)
+        self._nutr_val =+ days * self._nutr_day_rate     
+        
+    def grow(self, growth) -> None:
+        Plant.set_height(self, self._height + growth)
+        self._nutr_val =+ growth * self._nutr_growth_rate
+        
     def show(self) -> None:
         Plant.show (self)
         print(f"Harvest season: {self._harv_season}")
@@ -95,12 +99,12 @@ def main() -> None:
     plant3 = Plant("Cactus", -2, 90)
     plant4 = Flower("Sunflower", 80.0, -45, "variable", True)
     plant5 = Plant("Fern", 15.0, 120)
-    plant6 = Vegetable("Tomato", 5.0, 10, 0, "April", 2.1, 1)
+    plant6 = Vegetable("Tomato", 5.0, 10, "April", 0, 2.1, 1)
     plants = [plant1, plant2, plant3, plant4, plant5, plant6]
     print("=== Garden Plant Types ===")
-    for i in plants:
-        Plant.show(i)
-    Vegetable.age(plant6, 2)
+    Vegetable.show(plant6)
+    Vegetable.age(plant6, 20)
+    # Vegetable.grow(plant6, 20)
     Vegetable.show(plant6)
 
 if __name__ == "__main__":
