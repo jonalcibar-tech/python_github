@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 class SecurePlant:
-    """A class representing a plant with validation for height and age"""
+    """A class representing a plant with validation for height and age."""
 
     def __init__(self, name: str) -> None:
         """Initialize a secure plant with name, height, and age"""
