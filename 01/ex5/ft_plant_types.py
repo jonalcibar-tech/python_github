@@ -7,19 +7,22 @@ class Plant:
         self._age: int = age
 
     def set_height(self, height: float = 0.0) -> float:
-        if height < 0:
-            self._height = self.height
-            print(f"{self._name} height updated: {height}cm")
+        if height >= 0:
+            self._height = height
+            print(f"{self._name} height updated: {self._height}cm")
             return (self._height)
-        print("Error, height can't be negative. Set to 0.0")
-        return (0.0)
+        else:
+            print("Error, height can't be negative. Set to 0.0")
+            return (0.0)
 
     def set_age(self, age: int) -> int:
         if age >= 0:
-            print(f"{self._name} age updated: {age} days")
-            return (age)
-        print("Error, age can't be negative. Set to 0")
-        return (0)
+            self._age =+ age
+            print(f"{self._name} age updated: {self._age} days")
+            return (self._age)
+        else:
+            print("Error, age can't be negative. Set to 0")
+            return (0)
 
     def get_height(self) -> None:
         print(f"{self._name} height: {round(self._height, 1)}cm")
@@ -79,12 +82,12 @@ class Vegetable(Plant):
         self._nutr_growth_rate = nutr_growth_rate
         self._nutr_day_rate = nutr_day_rate
     
-    def age(self, days) -> None:
-        Plant.set_age(self, self._age + days)
+    def age(self, days: int) -> None:
+        self._age = Plant.set_age(self, self._age + days)
         self._nutr_val =+ days * self._nutr_day_rate     
         
-    def grow(self, growth) -> None:
-        Plant.set_height(self, self._height + growth)
+    def grow(self, growth: float) -> None:
+        self.set_height = Plant.set_height(self, self._height + growth)
         self._nutr_val =+ growth * self._nutr_growth_rate
         
     def show(self) -> None:
@@ -104,7 +107,7 @@ def main() -> None:
     print("=== Garden Plant Types ===")
     Vegetable.show(plant6)
     Vegetable.age(plant6, 20)
-    # Vegetable.grow(plant6, 20)
+    Vegetable.grow(plant6, 20)
     Vegetable.show(plant6)
 
 if __name__ == "__main__":
