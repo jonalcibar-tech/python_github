@@ -1,6 +1,6 @@
 class Plant:
 
-    def __init__(self, name: str, height: float = 0, age: int = 0) -> None:
+    def __init__(self, name: str, plant_type: str = "", height: float = 0, age: int = 0) -> None:
         self._name: str = (name)
         self._plant_type: str = plant_type
         self._height: float = height
@@ -66,6 +66,8 @@ class Tree(Plant):
             print(f"Tree {self._name} now produces a shade of "
                   f"{round(self._height, 1)}cm long and "
                   f"{round(self._trunk_diam, 1)}cm wide.")
+        else:
+            print(f"Tree {self._name} produces no shade")
 
     def show(self) -> None:
         Plant.show(self)
@@ -83,7 +85,7 @@ class Vegetable(Plant):
     
     def age(self, days: int) -> None:
         self._age = Plant.set_age(self, self._age + days)
-        self.grow(self, days)
+        self.grow(days)
         
     def grow(self, days: int) -> None:
         self.set_height = Plant.set_height(self, self._height + days * self._growth_rate)
@@ -120,7 +122,6 @@ def main() -> None:
             Vegetable.show(i)
             print("[make tomato grow and age for 20 days]")
             Vegetable.age(i, 20)
-            Vegetable.grow(i, 20)
             Vegetable.show(i)
 
 if __name__ == "__main__":
