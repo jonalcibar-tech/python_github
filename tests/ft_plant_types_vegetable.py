@@ -35,30 +35,31 @@ class Plant:
               f"{self._age} days old")
 class Vegetable(Plant):
     def __init__(self, name: str, plant_type: str = "", height: float = 0, age: int = 0,
-                 harv_season: str = "", growth_rate: float = 0.0, nutr_val: float = 0, 
+                 harv_season: str = "", growth_rate: float = 0.0, nutr_val: int = 0, 
                  nutr_growth_rate: float = 0,) -> None:
         super().__init__(name, plant_type, height, age)
-        self._harv_season = harv_season
-        self._growth_rate = growth_rate
-        self._nutr_val = nutr_val
-        self._nutr_growth_rate = nutr_growth_rate
+        self._harv_season: int = harv_season
+        self._growth_rate: float = growth_rate
+        self._nutr_val: int = (nutr_val)
+        self._nutr_growth_rate: float = nutr_growth_rate
     
     def age(self, days: int) -> None:
         self._age = Plant.set_age(self, (self._age + days))
         self.grow(days)
         
     def grow(self, days: int) -> None:
-        self.set_height = Plant.set_height(self, self._height + days * self._growth_rate)
-        self._nutr_val =+ days * self._nutr_growth_rate
+        height_increase: float = days * self._growth_rate 
+        self.set_height = Plant.set_height(self, self._height + height_increase)
+        self._nutr_val =+  height_increase * self._nutr_growth_rate
         
     def show(self) -> None:
         Plant.show (self)
         print(f"Harvest season: {self._harv_season}")
-        print(f"Nutritional value: {self._nutr_val}")
+        print(f"Nutritional value: {round(self._nutr_val)}")
 
 
 def main() -> None:
-    plant6 = Vegetable("Tomato", "Vegetable", 5.0, 10, "April", 0, 2.1, 1)
+    plant6 = Vegetable("Tomato", "Vegetable", 5.0, 10, "April", 2.1, 0, 0.4761)
     plants = [plant6]
     Vegetable.show(plant6)
     print("[make tomato grow and age for 20 days]")

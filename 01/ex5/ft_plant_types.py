@@ -42,7 +42,7 @@ class Flower(Plant):
         self._color: str = color
         self._bloom: bool = bloom
 
-    def bloom(self):
+    def bloom(self) -> None:
         self._bloom = True
         Flower.show(self)
 
@@ -56,7 +56,7 @@ class Flower(Plant):
 
 
 class Tree(Plant):
-    def __init__(self, name, plant_type: str = "", height: float = 0, age: int = 0,
+    def __init__(self, name: str, plant_type: str = "", height: float = 0, age: int = 0,
                  trunk_diam: float = 0) -> None:
         super().__init__(name, plant_type, height, age)
         self._trunk_diam = trunk_diam
@@ -88,13 +88,14 @@ class Vegetable(Plant):
         self.grow(days)
         
     def grow(self, days: int) -> None:
-        self.set_height = Plant.set_height(self, self._height + days * self._growth_rate)
-        self._nutr_val =+ days * self._nutr_growth_rate
+        height_increase: float = days * self._growth_rate 
+        self._height = Plant.set_height(self, self._height + height_increase)
+        self._nutr_val =+  height_increase * self._nutr_growth_rate
         
     def show(self) -> None:
         Plant.show (self)
         print(f"Harvest season: {self._harv_season}")
-        print(f"Nutritional value: {self._nutr_val}")
+        print(f"Nutritional value: {round(self._nutr_val)}")
 
 
 def main() -> None:
@@ -103,7 +104,7 @@ def main() -> None:
     plant3 = Plant("Cactus", "", -2, 90)
     plant4 = Flower("Sunflower", "Flower", 80.0, -45, "variable", True)
     plant5 = Tree("Fern", "Tree", 15.0, 120)
-    plant6 = Vegetable("Tomato", "Vegetable", 5.0, 10, "April", 0, 2.1, 1)
+    plant6 = Vegetable("Tomato", "Vegetable", 5.0, 10, "April", 2.1, 0, 0.4761)
     plants = [plant1, plant2, plant3, plant4, plant5, plant6]
     print("=== Garden Plant Types ===")
     for i in plants:
