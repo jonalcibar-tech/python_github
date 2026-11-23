@@ -2,7 +2,7 @@ class Plant:
 
     def __init__(self, name: str, plant_type: str = "",
                  height: float = 0, age: int = 0) -> None:
-        self._name: str = (name)
+        self._name: str = name
         self._plant_type: str = plant_type
         self._height: float = height
         self._age: int = age
@@ -129,6 +129,3 @@ def main() -> None:
             Vegetable.age(i, 20)
             Vegetable.show(i)
 
-
-if __name__ == "__main__":
-    main()

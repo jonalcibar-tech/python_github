@@ -1,7 +1,7 @@
 class Plant:
 
     def __init__(self, name: str, height: float = 0, age: int = 0) -> None:
-        self._name: str = (name)
+        self._name: str = name
         print(f"\nPlant created: {self._name}")
         self._height: float = self.set_height(height)
         self._age: int = self.set_age(age)
