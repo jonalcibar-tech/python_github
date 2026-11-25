@@ -56,10 +56,11 @@ class Flower(Plant):
         super().__init__(name, plant_type, height, age)
         self._color: str = color
         self._bloom: bool = bloom
+        self._seeds_number = None # Placeholder until the flower blooms
 
     def bloom(self) -> None:
         self._bloom = True
-        Seeds. self
+        self._seeds_number = Seed(self._name)
         Flower.show(self)
 
     def show(self) -> None:
@@ -67,8 +68,17 @@ class Flower(Plant):
         print(f"Color : {self._color}")
         if self._bloom:
             print(f"{self._name} is blooming beautifully!")
+            print(f"Seeds: {Seed.get_seeds_number()}")
         else:
             print(f"{self._name} has not bloomed yet")
+
+class Seed(Flower):
+    def __init__(self, name: str, seeds_number: int = 42) -> None:
+        super().__init__(name)
+        self._seeds_number = seeds_number
+
+    def get_seeds_number() -> int:
+        return(self._seeds_number)
 
 
 class Tree(Plant):
@@ -124,17 +134,11 @@ class Anonymous(Plant):
         Plant.show(self)
 
 
-class Seed(Flower):
-    def __init__(self, name, seeds_number: int = 0):
-        super().__init__()
-        
-
-
 def main() -> None:
     plant1 = Flower("Rose", "Flower", 15.0, 10, "red", False)
     plant2 = Tree("Oak", "Tree", 200.0, 365, 5.0)
     plant3 = Plant("Cactus", "", -2, 90)
-    plant4 = Flower("Sunflower", "Flower", 80.0, -45, "variable", True)
+    plant4 = Flower("Sunflower", "Flower", 80.0, -45, "yellow", True)
     plant5 = Tree("Fern", "Tree", 15.0, 120)
     plant6 = Vegetable("Tomato", "Vegetable", 5.0, 10, "April", 2.1, 0, 0.4761)
     plants = [plant1, plant2, plant3, plant4, plant5, plant6]
@@ -142,6 +146,7 @@ def main() -> None:
     print("=== Check year.old ===")
     Plant.older_than_year(30)
     Plant.older_than_year(400)
+    Flower.bloom(plant4)
 
 
 
