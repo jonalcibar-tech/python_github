@@ -138,7 +138,7 @@ def main() -> None:
     plant1 = Flower("Rose", "Flower", 15.0, 10, "red", False)
     plant2 = Tree("Oak", "Tree", 200.0, 365, 5.0)
     plant3 = Plant("Cactus", "", -2, 90)
-    plant4 = Flower("Sunflower", "Flower", 80.0, -45, "yellow", True)
+    plant4 = Flower("Sunflower", "Flower", 80.0, -45, "yellow", False)
     plant5 = Tree("Fern", "Tree", 15.0, 120)
     plant6 = Vegetable("Tomato", "Vegetable", 5.0, 10, "April", 2.1, 0, 0.4761)
     plants = [plant1, plant2, plant3, plant4, plant5, plant6]
