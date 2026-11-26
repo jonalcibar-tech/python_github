@@ -21,16 +21,16 @@ class Plant:
               f"{self._age} days old")
         
 class Flower(Plant):
-    def __init__(self, name: str, plant_type: str = "", height: float = 0,
+    def __init__(self, name: str, plant_type: str = "", height: float = 0.0,
                  age: int = 0, color: str = "", bloom: bool = False) -> None:
         super().__init__(name, plant_type, height, age)
         self._color: str = color
         self._bloom: bool = bloom
-        self._seeds_number = None # Placeholder until the flower blooms
+
 
     def bloom(self) -> None:
         self._bloom = True
-        Flower.append(self._seeds_number) = Seed(self._name)
+        Seed(self._name, self._plant_type)
         Flower.show(self)
 
     def show(self) -> None:
@@ -38,16 +38,20 @@ class Flower(Plant):
         print(f"Color : {self._color}")
         if self._bloom:
             print(f"{self._name} is blooming beautifully!")
-            print(f"Seeds: {Seed._seeds_number}")
+            print(f"Seeds: {Seed.get_seeds_number}")
         else:
             print(f"{self._name} has not bloomed yet")
             
 
 class Seed(Flower):
-    def __init__(self, name: str, seeds_number: int = 42) -> int:
-        super().__init__(name, plant_type = None, height = None, age = None, color = None, bloom = None) -> None:
+    def __init__(self, name: str, seeds_number: int = 42) -> None:
+        super().__init__(self, plant_type=: str, height: float = 0.0,
+                         age: int = 0, color, bloom = None)
+    
         self._seeds_number = seeds_number
-        return(seeds_number)
+
+    def get_seeds_number(self) -> int:
+        return(self._seeds_number)
 
     #def get_seeds_number() -> int:
     #    return(_seeds_number)

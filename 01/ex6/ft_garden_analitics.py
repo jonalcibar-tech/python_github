@@ -2,8 +2,8 @@ class Plant:
 
     def __init__(self, name: str, plant_type: str = "",
                  height: float = 0, age: int = 0) -> None:
-        self._name: str = name
-        self._plant_type: str = plant_type
+        self._name = name
+        self._plant_type = plant_type
         self._height: float = height
         self._age: int = age
 
@@ -47,8 +47,7 @@ class Statistics(Plant):
     def __init__(self, grow_calls : int = 0, age_calls : int = 0,
                  show_calls: int =0) -> None:
         pass
-        
-        
+           
 
 class Flower(Plant):
     def __init__(self, name: str, plant_type: str = "", height: float = 0,
@@ -60,7 +59,7 @@ class Flower(Plant):
 
     def bloom(self) -> None:
         self._bloom = True
-        self._seeds_number = Seed(self._name)
+        new_plant = Seed(self._name, 42)
         Flower.show(self)
 
     def show(self) -> None:
@@ -72,12 +71,16 @@ class Flower(Plant):
         else:
             print(f"{self._name} has not bloomed yet")
 
+# a seed is itself a plant, though seed numbers in a seed is ridiculous
+# but subject says so
 class Seed(Flower):
-    def __init__(self, name: str, seeds_number: int = 42) -> None:
-        super().__init__(name)
+    def __init__(self, name: str, plant_type: str = "", height: float = 0,
+                 age: int = 0, color: str = "", bloom: bool = False,
+                 seeds_number: int = 42) -> None:
+        super().__init__(name, plant_type, height, age, color, bloom)
         self._seeds_number = seeds_number
 
-    def get_seeds_number() -> int:
+    def get_seeds_number(self) -> int:
         return(self._seeds_number)
 
 
@@ -126,13 +129,11 @@ class Vegetable(Plant):
         print(f"Harvest season: {self._harv_season}")
         print(f"Nutritional value: {round(self._nutr_val)}")
 
-
 class Anonymous(Plant):
     def __init__(self, name: str = "Anonymous", plant_type: str = "",
                  height: float = 0, age: int = 0) -> None:
-        super().__init__(plant_type, height, age)
+        super().__init__(name, plant_type, height, age)
         Plant.show(self)
-
 
 def main() -> None:
     plant1 = Flower("Rose", "Flower", 15.0, 10, "red", False)
